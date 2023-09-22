@@ -223,12 +223,3 @@ h3 {
   height: 100%;
   width: 30px;
 }
-
-#select {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-}
-
-#search-input {
-  margin-right: 10px;
-}
