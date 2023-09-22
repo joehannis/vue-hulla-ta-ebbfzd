@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     filterProducts() {
-      this.filteresProductList = []
+      this.filteredProductList = []
       this.filteredProductList = this.products.filter((product) => {
         if (this.selectedBrand && product.brand !== this.selectedBrand) {
           return false; 
