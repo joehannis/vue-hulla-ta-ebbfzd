@@ -7,14 +7,14 @@
           :stock-statuses="stockStatuses"
           @selected-stock-status="handleStockStatusSelected"
         />
-        <p>Total: {{ counter }}</p>
+        Total: {{ counter }}
       </p>
     </div>
     <div class="app">
       <div class="no-products" v-if="filteredProductList.length === 0">
         There are no products
       </div>
-      <div class="product-grid">
+      <div class="card">
         <ul class="list">
           <li
             class="card"
@@ -29,12 +29,38 @@
   </div>
 </template>
 
+<style >
+  .filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin: 10px;
+    width: 80%;
+    height: 50px;
+    background-color: #f2e0c1;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .list {
+  list-style-type: none;
+  padding: 0;
+  justify-content: center;
+  }
+  .app {
+    display: flex;
+    flex-direction: column;
+
+  }
+}
+
+</style>
+
 <script>
 import ProductGridItem from './components/ProductGridItem.vue';
 import products from './data/products.json';
 import BrandFilter from './components/BrandFilter.vue';
 import StockFilter from './components/StockFilter.vue';
-console.log(products[1].isAvailable);
 
 export default {
   name: 'App',
@@ -53,24 +79,28 @@ export default {
       filteredProductList: products,
       selectedBrand: '',
       selectedStatus: '',
-      counter: filteredProductList.length
+      counter: products.length
     };
   },
   methods: {
     filterProducts() {
+      this.filteresProductList = []
       this.filteredProductList = this.products.filter((product) => {
         if (this.selectedBrand && product.brand !== this.selectedBrand) {
-          return false; // Filter out products with a different brand
+          return false; 
         }
 
         if (this.selectedStatus !== '') {
-          console.log(product.isAvailable);
-          console.log(this.selectedStatus);
-          return product.isAvailable === this.selectedStatus; // Filter based on selectedStatus
+          return product.isAvailable === this.selectedStatus; 
         }
 
-        return true; // No brand or status filter applied
+        return true;
       });
+      if (this.filteredProductList.length > 0) {
+        this.counter = this.filteredProductList.length;
+      } else {
+        this.counter = this.products.length;
+      }
     },
 
     handleBrandSelected(brand) {
@@ -83,5 +113,6 @@ export default {
     },
   },
 };
+
 
 

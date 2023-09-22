@@ -1,9 +1,11 @@
 <template>
-  <select v-model="selectedStockStatus" @change="handleChange">
-    <option value="">All Products</option>
-    <option :value="true">In Stock</option>
-    <option :value="false">Out of Stock</option>
-  </select>
+  <div class="filter">
+    <select v-model="selectedStockStatus" @change="handleChange">
+      <option value="">All Products</option>
+      <option :value="true">In Stock</option>
+      <option :value="false">Out of Stock</option>
+    </select>
+  </div>
 </template>
 
 <script>

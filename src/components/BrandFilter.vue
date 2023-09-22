@@ -1,10 +1,12 @@
 <template>
-  <select @change="handleChange">
-    <option value="">All Brands</option>
-    <option v-for="brand in brands" :brand="brand" :key="brand">
-      {{ brand }}
-    </option>
-  </select>
+  <div class="filter">
+    <select @change="handleChange">
+      <option value="">All Brands</option>
+      <option v-for="brand in brands" :value="brand" :key="brand">
+        {{ brand }}
+      </option>
+    </select>
+  </div>
 </template>
 
 <script>
